@@ -3,18 +3,7 @@ var UserAgentParser = {
 	// Lot of info about the user agent:
 	// 		http://www-archive.mozilla.org/build/revised-user-agent-strings.html
 	
-	//
-	// vendor: HTC, Nokia, Sony Ericsson
-	// model: htc_bravo, htc_vision, htc_legend, htc_ace, iPhone
-	// model_version: 
-	// environment: browser, W3C runtime, HTML5 App
-	// os: iPhone OS
-	// os_version: 4_2_1
-	// runtime: S60; Symbian OS
-	// locale: de-DE, en-GB, en-de, en, de
-	//
-	//
-	
+	// The resulting object structure:
 	ret: {
 		hardware:{
 			name: "", // HTC htc_vision, HTC htc_legend, HTC htc_ace, NOKIA 
