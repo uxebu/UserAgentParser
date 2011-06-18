@@ -2,6 +2,12 @@ var UserAgentParser = require("../src/parser").UserAgentParser,
     vows = require("vows"),
     assert = require("assert");
 
+console.log(UserAgentParser.parse('Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/534.24 (KHTML, like Gecko) Chrome/11.0.696.71 Safari/534.24'));
+console.log(UserAgentParser.parse('Mozilla/5.0 (X11; CrOS i686 0.13.587) AppleWebKit/535.1 (KHTML, like Gecko) Chrome/13.0.782.14 Safari/535.1'));
+console.log(UserAgentParser.parse('Mozilla/5.0 (Macintosh; Intel Mac OS X 10_6_6) AppleWebKit/534.24 (KHTML, like Gecko) Chrome/11.0.698.0 Safari/534.24'));
+console.log(UserAgentParser.parse('Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/534.24 (KHTML, like Gecko) Chrome/11.0.696.3 Safari/534.24'));
+
+/*
 // run tests
 vows.describe('Android, Opera').addBatch({
     'android-opera':{
@@ -63,4 +69,4 @@ vows.describe('Android, Opera').addBatch({
             assert.equal(topic[2].engine.security, "U");
         }
     }
-}).export(module);
+}).export(module);*/
