@@ -123,12 +123,6 @@ var UserAgentParser = {
 				ret.engine.security = os[3];
 			}
 		}
-		
-		// iPhone4 iOS4
-		// 		Mozilla/5.0 (iPhone; U; CPU iPhone OS 4_2_1 like Mac OS X; de-de) AppleWebKit/533.17.9 (KHTML, like Gecko) Version/5.0.2 Mobile/8C148 Safari/6533.18.5",
-		else if (/^Mozilla\/\d+\.\d+ .*iPhone/.test(ua)){
-			var match = ua.match();
-		}
         
         // Chrome
         //      Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/534.24 (KHTML, like Gecko) Chrome/11.0.696.71 Safari/534.24
@@ -143,25 +137,25 @@ var UserAgentParser = {
             
             if(/(Windows [^;]+);([^;]+)/.test(match[3])){
                 var osMatch = match[3].match(/([^;]+);([^;]+)/);
-                hardware.name = osMatch[2].trim();
+                //hardware.name = osMatch[2].trim();
                 os.name = osMatch[1].trim();
             }
             else if(/(X11); (CrOS) ([^;]+) ([^;]+)/.test(match[3])){
                 var osMatch = match[3].match(/(X11); (CrOS) ([^;]+) ([^;]+)/);
                 os.name = osMatch[2].trim();
                 os.version = osMatch[4].trim();
-                hardware.name = osMatch[3].trim();
+                //hardware.name = osMatch[3].trim();
             }
             else if(/(X11); (Linux) ([^;]+)/.test(match[3])){
                 var osMatch = match[3].match(/(X11); (Linux) ([^;]+)/);
                 os.name = osMatch[2].trim();
-                hardware.name = osMatch[3].trim();
+                //hardware.name = osMatch[3].trim();
             }
             else if(/(Macintosh); ([^;]+) (Mac [^;]+)/.test(match[3])){
                 var osMatch = match[3].match(/(Macintosh); ([^;]+) (Mac [^;]+)/);
                 os.name = osMatch[3].trim();
-                hardware.name = osMatch[2].trim();
-                hardware.platform = osMatch[1].trim();
+                //hardware.name = osMatch[2].trim();
+                //hardware.platform = osMatch[1].trim();
             }
             var ret = {
                     hardware: hardware,
@@ -182,11 +176,17 @@ var UserAgentParser = {
             
         }
         // Firefox
+        //      Mozilla/5.0 (Macintosh; Intel Mac OS X 10.6; rv:2.0b8) Gecko/20100101 Firefox/4.0b8
         //      Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:2.0b8pre) Gecko/20101128 Firefox/4.0b8pre
+        //      Mozilla/5.0 (Windows NT 6.1; WOW64; rv:2.0b7) Gecko/20101111 Firefox/4.0b7
         //      Mozilla/5.0 (Windows NT 6.1; rv:2.0) Gecko/20110319 Firefox/4.0
         //      Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US; rv:2.0b10) Gecko/20110126 Firefox/4.0b10
         //      Mozilla/5.0 (X11; U; FreeBSD i386; en-US; rv:1.9.2.9) Gecko/20100913 Firefox/3.6.9
         //      Mozilla/5.0 (Windows; U; Windows NT 6.1; he; rv:1.9.2.8) Gecko/20100722 Firefox/3.6.8
+        //      Mozilla/5.0 (Windows; U; Windows NT 5.1; zh-CN; rv:1.9.2.8) Gecko/20100722 Firefox/3.6.8
+        //      Mozilla/5.0 (X11; U; OpenBSD i386; en-US; rv:1.9.2.8) Gecko/20101230 Firefox/3.6.8
+        //      Mozilla/5.0 (X11; U; Linux x86_64; en-US; rv:1.9.2a1pre) Gecko/20090428 Firefox/3.6a1pre
+        //      Mozilla/5.0 (Windows NT 5.2; rv:2.0b13pre) Gecko/20110304 Firefox/4.0b13pre
         else if (/(Mozilla)\/(\d+\.\d+) \(([^)]+)\) (Gecko)\/([^\s]+) (Firefox)\/([^\s]+)$/.test(ua)){
             var match = ua.match(/(Mozilla)\/(\d+\.\d+) \(([^)]+)\) (Gecko)\/([^\s]+) (Firefox)\/([^\s]+)$/);
             console.log(match);
@@ -194,11 +194,7 @@ var UserAgentParser = {
             var hardware = {},
                 os = {};
             
-            if(/(Windows [^;]+);([^;]+)/.test(match[3])){
-                //var osMatch = match[3].match(/([^;]+);([^;]+)/);
-                //hardware.name = osMatch[2].trim();
-                //os.name = osMatch[1].trim();
-            }
+            // TODO: device and os parser
             
             var ret = {
                     hardware: hardware,
@@ -217,7 +213,123 @@ var UserAgentParser = {
                 }
             };
         }
-		return ret;
+        // iPad iPhone Safari
+        //      Mozilla/5.0 (iPad; U; CPU OS 4_3_3 like Mac OS X; de-de) AppleWebKit/533.17.9 (KHTML, like Gecko) Version/5.0.2 Mobile/8J2 Safari/6533.18.5
+        //      Mozilla/5.0 (iPhone; U; CPU iPhone OS 4_3 like Mac OS X; en-us) AppleWebKit/534.32 (KHTML, like Gecko) Version/5.0.2 Mobile/8F190 Safari/6533.18.5
+        else if(/(Mozilla)\/(\d+\.\d+) \(([^)]+)\) (AppleWebKit)\/([^\s]+) \(([^)]+)\) (Version)\/([^\s]+) (Mobile)\/([^\s]+) (Safari)\/([^\s]+)$/.test(ua)){
+            var match = ua.match(/(Mozilla)\/(\d+\.\d+) \(([^)]+)\) (AppleWebKit)\/([^\s]+) \(([^)]+)\) (Version)\/([^\s]+) (Mobile)\/([^\s]+) (Safari)\/([^\s]+)$/);
+            
+            var hardware = {},
+                os = {},
+                locale = ""
+                security = "";
+            // iPad    
+            //      (iPad; U; CPU OS 4_3_3 like Mac OS X; de-de)
+            if(/(iPad); ([^;]+); ([^;]+); ([^;]+)/.test(match[3])){
+                var osMatch = match[3].match(/(iPad); ([^;]+); ([^;]+); ([^;]+)/);
+                hardware.name = osMatch[1].trim();
+                os.name = osMatch[3].trim();
+                locale = osMatch[4].trim();
+                security = osMatch[2].trim();
+            }
+            // iPhone
+            //      iPhone; U; CPU iPhone OS 4_3 like Mac OS X; en-us
+            else if(/(iPhone); ([^;]+); ([^;]+); ([^;]+)/.test(match[3])){
+                var osMatch = match[3].match(/(iPhone); ([^;]+); ([^;]+); ([^;]+)/);
+                hardware.name = osMatch[1].trim();
+                os.name = osMatch[3].trim();
+                locale = osMatch[4].trim();
+                security = osMatch[2].trim();
+            }
+                
+            var ret = {
+                    hardware: hardware,
+                os: os,
+                engine:{
+                    name: match[4].trim(), //     Presto,     Webkit,
+                    version: [match[5].trim()], //  2.4.15,     534.3, 533.19.4
+                    locale: locale, // de-DE, en-GB, en-de, en, de
+                    security: security, // N, U, I
+                    raw: {} // {Presto:"2.4.15", Version:"10.00"}
+                    },
+                browser:{
+                    name: match[11].trim(), //    Safari        Opera
+                    version: match[12].trim(), // 5.0.3       11.0
+                    raw: {}
+                }
+            };
+        }
+        // Android Safari
+        //      Mozilla/5.0 (Linux; U; Android 2.3.4; de-de; Nexus One Build/GRJ22) AppleWebKit/533.1 (KHTML, like Gecko) Version/4.0 Mobile Safari/533.1
+        //      Mozilla/5.0 (Linux; U; Android 2.3.3; de-de; HTC_WildfireS_A510e Build/GRI40) AppleWebKit/533.1 (KHTML, like Gecko) Version/4.0 Mobile Safari/533.1
+		else if(/(Mozilla)\/(\d+\.\d+) \(([^)]+)\) (AppleWebKit)\/([^\s]+) \(([^)]+)\) (Version)\/([^\s]+) (Mobile) (Safari)\/([^\s]+)$/.test(ua)){
+            var match = ua.match(/(Mozilla)\/(\d+\.\d+) \(([^)]+)\) (AppleWebKit)\/([^\s]+) \(([^)]+)\) (Version)\/([^\s]+) (Mobile) (Safari)\/([^\s]+)$/);
+            
+            var hardware = {},
+                os = {},
+                locale = ""
+                security = "";
+            // Android    
+            //      (Linux; U; Android 2.3.4; de-de; Nexus One Build/GRJ22)
+            if(/(Linux); ([^;]+); (Android[^;]+); ([^;]+); ([^;]+)/.test(match[3])){
+                var osMatch = match[3].match(/(Linux); ([^;]+); (Android[^;]+); ([^;]+); ([^;]+)/);
+                hardware.name = osMatch[5].trim();
+                os.name = osMatch[3].trim();
+                locale = osMatch[4].trim();
+                security = osMatch[2].trim();
+            } 
+            var ret = {
+                    hardware: hardware,
+                os: os,
+                engine:{
+                    name: match[4].trim(), //     Presto,     Webkit,
+                    version: [match[5].trim()], //  2.4.15,     534.3, 533.19.4
+                    locale: locale, // de-DE, en-GB, en-de, en, de
+                    security: security, // N, U, I
+                    raw: {} // {Presto:"2.4.15", Version:"10.00"}
+                    },
+                browser:{
+                    name: match[10].trim(), //    Safari        Opera
+                    version: match[11].trim(), // 5.0.3       11.0
+                    raw: {}
+                }
+            };
+        }
+        // RIM Playbook Safari
+        //      Mozilla/5.0 (PlayBook; U; RIM Tablet OS 1.0.0; en-US) AppleWebKit/534.8+ (KHTML, like Gecko) Version/0.0.1 Safari/534.8+
+    	else if(/(Mozilla)\/(\d+\.\d+) \(([^)]+)\) (AppleWebKit)\/([^\s]+) \(([^)]+)\) (Version)\/([^\s]+) (Safari)\/([^\s]+)$/.test(ua)){
+            var match = ua.match(/(Mozilla)\/(\d+\.\d+) \(([^)]+)\) (AppleWebKit)\/([^\s]+) \(([^)]+)\) (Version)\/([^\s]+) (Safari)\/([^\s]+)$/);
+            var hardware = {},
+                os = {},
+                locale = ""
+                security = "";
+            // RIM PlayBook    
+            //      (PlayBook; U; RIM Tablet OS 1.0.0; en-US)
+            if(/(PlayBook); ([^;]+); (RIM [^;]+); ([^;]+)/.test(match[3])){
+                var osMatch = match[3].match(/(PlayBook); ([^;]+); (RIM [^;]+); ([^;]+)/);
+                hardware.name = osMatch[1].trim();
+                os.name = osMatch[3].trim();
+                locale = osMatch[4].trim();
+                security = osMatch[2].trim();
+            } 
+            var ret = {
+                    hardware: hardware,
+                os: os,
+                engine:{
+                    name: match[4].trim(), //     Presto,     Webkit,
+                    version: [match[5].trim()], //  2.4.15,     534.3, 533.19.4
+                    locale: locale, // de-DE, en-GB, en-de, en, de
+                    security: security, // N, U, I
+                    raw: {} // {Presto:"2.4.15", Version:"10.00"}
+                    },
+                browser:{
+                    name: match[9].trim(), //    Safari        Opera
+                    version: match[10].trim(), // 5.0.3       11.0
+                    raw: {}
+                }
+            };
+        }
+        return ret;
 	},
 	
 	_parseSlashNotation:function(s){
