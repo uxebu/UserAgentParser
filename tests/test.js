@@ -58,45 +58,54 @@ vows.describe('Android, Opera').addBatch({
             assert.equal(topic[2].engine.security, "U");
         }
     },
-    'android-safari':{
+    'mobile-safari':{
         topic:[
                 UserAgentParser.parse("Mozilla/5.0 (Linux; U; Android 2.3.4; de-de; Nexus One Build/GRJ22) AppleWebKit/533.1 (KHTML, like Gecko) Version/4.0 Mobile Safari/533.1"),
-                UserAgentParser.parse("Mozilla/5.0 (Linux; U; Android 2.3.3; de-de; HTC_WildfireS_A510e Build/GRI40) AppleWebKit/533.1 (KHTML, like Gecko) Version/4.0 Mobile Safari/533.1")
+                UserAgentParser.parse("Mozilla/5.0 (Linux; U; Android 2.3.3; de-de; HTC_WildfireS_A510e Build/GRI40) AppleWebKit/533.1 (KHTML, like Gecko) Version/4.0 Mobile Safari/533.1"),
+                UserAgentParser.parse("Mozilla/5.0 (BlackBerry; U; BlackBerry 9800; en-US) AppleWebKit/534.1+ (KHTML, like Gecko) Version/6.0.0.185 Mobile Safari/534.1+")
               ],
         
         'hardware-name':function(topic){
             assert.equal(topic[0].hardware.name, "Nexus One Build/GRJ22");
             assert.equal(topic[1].hardware.name, "HTC_WildfireS_A510e Build/GRI40");
+            assert.equal(topic[2].hardware.name, "BlackBerry");
         },
         'os-name':function(topic){
             assert.equal(topic[0].os.name, "Android 2.3.4");
             assert.equal(topic[1].os.name, "Android 2.3.3");
+            assert.equal(topic[2].os.name, "BlackBerry 9800");
         },
         
         'browser-name':function(topic){
             assert.equal(topic[0].browser.name, "Safari");
             assert.equal(topic[1].browser.name, "Safari");
+            assert.equal(topic[2].browser.name, "Safari");
         },
         'browser-version':function(topic){
             assert.equal(topic[0].browser.version, "533.1");
             assert.equal(topic[1].browser.version, "533.1");
+            assert.equal(topic[2].browser.version, "534.1+");
         },
         
         'engine-locale':function(topic){
             assert.equal(topic[0].engine.locale, "de-de");
             assert.equal(topic[1].engine.locale, "de-de");
+            assert.equal(topic[2].engine.locale, "en-US");
         },
         'engine-name':function(topic){
             assert.equal(topic[0].engine.name, "AppleWebKit");
             assert.equal(topic[1].engine.name, "AppleWebKit");
+            assert.equal(topic[2].engine.name, "AppleWebKit");
         },
         'engine-version':function(topic){
             assert.equal(topic[0].engine.version[0], "533.1");
             assert.equal(topic[1].engine.version[0], "533.1");
+            assert.equal(topic[2].engine.version[0], "534.1+");
         },
         'engine-security':function(topic){
             assert.equal(topic[0].engine.security, "U");
             assert.equal(topic[1].engine.security, "U");
+            assert.equal(topic[2].engine.security, "U");
         }
     },
     'ipad-iphone-safari':{

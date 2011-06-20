@@ -187,7 +187,6 @@ var UserAgentParser = {
         //      Mozilla/5.0 (X11; U; Linux x86_64; en-US; rv:1.9.2a1pre) Gecko/20090428 Firefox/3.6a1pre
         else if (/(Mozilla)\/(\d+\.\d+) \(([^)]+)\) (Gecko)\/([^\s]+) (Firefox)\/([^\s]+)$/.test(ua)){
             var match = ua.match(/(Mozilla)\/(\d+\.\d+) \(([^)]+)\) (Gecko)\/([^\s]+) (Firefox)\/([^\s]+)$/);
-            console.log(match);
             
             var hardware = {},
                 os = {};
@@ -260,6 +259,7 @@ var UserAgentParser = {
         // Android Safari
         //      Mozilla/5.0 (Linux; U; Android 2.3.4; de-de; Nexus One Build/GRJ22) AppleWebKit/533.1 (KHTML, like Gecko) Version/4.0 Mobile Safari/533.1
         //      Mozilla/5.0 (Linux; U; Android 2.3.3; de-de; HTC_WildfireS_A510e Build/GRI40) AppleWebKit/533.1 (KHTML, like Gecko) Version/4.0 Mobile Safari/533.1
+        //      Mozilla/5.0 (BlackBerry; U; BlackBerry 9800; en-US) AppleWebKit/534.1+ (KHTML, like Gecko) Version/6.0.0.185 Mobile Safari/534.1+
 		else if(/(Mozilla)\/(\d+\.\d+) \(([^)]+)\) (AppleWebKit)\/([^\s]+) \(([^)]+)\) (Version)\/([^\s]+) (Mobile) (Safari)\/([^\s]+)$/.test(ua)){
             var match = ua.match(/(Mozilla)\/(\d+\.\d+) \(([^)]+)\) (AppleWebKit)\/([^\s]+) \(([^)]+)\) (Version)\/([^\s]+) (Mobile) (Safari)\/([^\s]+)$/);
             
@@ -276,6 +276,16 @@ var UserAgentParser = {
                 locale = osMatch[4].trim();
                 security = osMatch[2].trim();
             } 
+            // BlackBerry
+            //      (BlackBerry; U; BlackBerry 9800; en-US)
+            else if(/(BlackBerry); ([^;]+); (BlackBerry[^;]+); ([^;]+)$/.test(match[3])){
+                var osMatch = match[3].match(/(BlackBerry); ([^;]+); (BlackBerry[^;]+); ([^;]+)$/);
+                hardware.name = osMatch[1].trim();
+                os.name = osMatch[3].trim();
+                locale = osMatch[4].trim();
+                security = osMatch[2].trim();
+            }
+            
             var ret = {
                     hardware: hardware,
                 os: os,
