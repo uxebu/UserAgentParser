@@ -303,8 +303,9 @@ var UserAgentParser = {
                 }
             };
         }
-        // RIM Playbook Safari
+        // Tablet Safari
         //      Mozilla/5.0 (PlayBook; U; RIM Tablet OS 1.0.0; en-US) AppleWebKit/534.8+ (KHTML, like Gecko) Version/0.0.1 Safari/534.8+
+        //      Mozilla/5.0 (Linux; U; Android 3.1; en-us; GT-P7510 Build/HMJ37) AppleWebKit/534.13 (KHTML, like Gecko) Version/4.0 Safari/534.13
     	else if(/(Mozilla)\/(\d+\.\d+) \(([^)]+)\) (AppleWebKit)\/([^\s]+) \(([^)]+)\) (Version)\/([^\s]+) (Safari)\/([^\s]+)$/.test(ua)){
             var match = ua.match(/(Mozilla)\/(\d+\.\d+) \(([^)]+)\) (AppleWebKit)\/([^\s]+) \(([^)]+)\) (Version)\/([^\s]+) (Safari)\/([^\s]+)$/);
             var hardware = {},
@@ -320,6 +321,15 @@ var UserAgentParser = {
                 locale = osMatch[4].trim();
                 security = osMatch[2].trim();
             } 
+            // Android    
+            //      (Linux; U; Android 3.1; en-us; GT-P7510 Build/HMJ37)
+            if(/(Linux); ([^;]+); (Android [^;]+); ([^;]+); ([^;]+)$/.test(match[3])){
+                var osMatch = match[3].match(/(Linux); ([^;]+); (Android [^;]+); ([^;]+); ([^;]+)$/);
+                hardware.name = osMatch[5].trim();
+                os.name = osMatch[3].trim();
+                locale = osMatch[4].trim();
+                security = osMatch[2].trim();
+            }
             var ret = {
                     hardware: hardware,
                 os: os,
