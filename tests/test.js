@@ -2,7 +2,7 @@ var UserAgentParser = require("../src/parser").UserAgentParser,
     vows = require("vows"),
     assert = require("assert");
 
-console.log(UserAgentParser.parse('Mozilla/5.0 (Linux; U; Android 3.1; en-us; GT-P7510 Build/HMJ37) AppleWebKit/534.13 (KHTML, like Gecko) Version/4.0 Safari/534.13'));
+console.log(UserAgentParser.parse('Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.6; en; rv:1.9.0.19) Gecko/2011032020 Camino/2.0.7 (like Firefox/3.0.19)'));
 
 // run tests
 vows.describe('Android, Opera').addBatch({
