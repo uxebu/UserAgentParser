@@ -2,7 +2,7 @@ var UserAgentParser = require("../src/parser").UserAgentParser,
     vows = require("vows"),
     assert = require("assert");
 
-console.log(UserAgentParser.parse('Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.6; en; rv:1.9.0.19) Gecko/2011032020 Camino/2.0.7 (like Firefox/3.0.19)'));
+//console.log(UserAgentParser.parse('Opera/9.80 (Android; Linux; Opera Widgets Mobi/AWM-1012211256; U; en) Presto/2.6.35 Version/10.1'));
 
 // run tests
 vows.describe('Android, Opera').addBatch({
@@ -84,9 +84,24 @@ vows.describe('Android, Opera').addBatch({
             assert.equal(topic[2].browser.name, "Safari");
         },
         'browser-version':function(topic){
-            assert.equal(topic[0].browser.version, "533.1");
-            assert.equal(topic[1].browser.version, "533.1");
-            assert.equal(topic[2].browser.version, "534.1+");
+            assert.equal(topic[0].browser.version, "4.0");
+            assert.equal(topic[1].browser.version, "4.0");
+            assert.equal(topic[2].browser.version, "6.0.0.185");
+        },
+        'browser-minor_version':function(topic){
+            assert.equal(topic[0].browser.minor_version, "4.0");
+            assert.equal(topic[1].browser.minor_version, "4.0");
+            assert.equal(topic[2].browser.minor_version, "6.0");
+        },
+        'browser-major_version':function(topic){
+            assert.equal(topic[0].browser.major_version, "4");
+            assert.equal(topic[1].browser.major_version, "4");
+            assert.equal(topic[2].browser.major_version, "6");
+        },
+        'browser-build':function(topic){
+            assert.equal(topic[0].browser.build, "533.1");
+            assert.equal(topic[1].browser.build, "533.1");
+            assert.equal(topic[2].browser.build, "534.1+");
         },
         
         'engine-locale':function(topic){
@@ -130,8 +145,20 @@ vows.describe('Android, Opera').addBatch({
             assert.equal(topic[1].browser.name, "Safari");
         },
         'browser-version':function(topic){
-            assert.equal(topic[0].browser.version, "6533.18.5");
-            assert.equal(topic[1].browser.version, "6533.18.5");
+            assert.equal(topic[0].browser.version, "5.0.2");
+            assert.equal(topic[1].browser.version, "5.0.2");
+        },
+        'browser-minor_version':function(topic){
+            assert.equal(topic[0].browser.minor_version, "5.0");
+            assert.equal(topic[1].browser.minor_version, "5.0");
+        },
+        'browser-major_version':function(topic){
+            assert.equal(topic[0].browser.major_version, "5");
+            assert.equal(topic[1].browser.major_version, "5");
+        },
+        'browser-build':function(topic){
+            assert.equal(topic[0].browser.build, "6533.18.5");
+            assert.equal(topic[1].browser.build, "6533.18.5");
         },
         
         'engine-locale':function(topic){
@@ -203,6 +230,26 @@ vows.describe('Android, Opera').addBatch({
             assert.equal(topic[5].browser.version, "3.6.9");
             assert.equal(topic[6].browser.version, "3.6.8");
             assert.equal(topic[7].browser.version, "3.6.8");
+        },
+        'browser-minor_version':function(topic){
+            assert.equal(topic[0].browser.minor_version, "4.0");
+            assert.equal(topic[1].browser.minor_version, "4.0");
+            assert.equal(topic[2].browser.minor_version, "4.0");
+            assert.equal(topic[3].browser.minor_version, "4.0");
+            assert.equal(topic[4].browser.minor_version, "4.0");
+            assert.equal(topic[5].browser.minor_version, "3.6");
+            assert.equal(topic[6].browser.minor_version, "3.6");
+            assert.equal(topic[7].browser.minor_version, "3.6");
+        },
+        'browser-major_version':function(topic){
+            assert.equal(topic[0].browser.major_version, "4");
+            assert.equal(topic[1].browser.major_version, "4");
+            assert.equal(topic[2].browser.major_version, "4");
+            assert.equal(topic[3].browser.major_version, "4");
+            assert.equal(topic[4].browser.major_version, "4");
+            assert.equal(topic[5].browser.major_version, "3");
+            assert.equal(topic[6].browser.major_version, "3");
+            assert.equal(topic[7].browser.major_version, "3");
         },
         
         'engine-locale':function(topic){
