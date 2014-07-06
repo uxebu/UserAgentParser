@@ -1,0 +1,148 @@
+== Android Opera ==
+
+{ hardware: 
+   { name: 'HTC htc_vision',
+     raw: [ 'HTC htc_vision', 'Opera/9.80' ] },
+  os: { name: 'Android 2.2.1' },
+  browser: { name: 'Opera', version: '10.00' },
+  engine: 
+   { locale: 'en',
+     name: 'Presto',
+     version: [ '2.4.15', '1011231422' ],
+     security: 'U' } }
+{ hardware: 
+   { name: 'HTC htc_legend',
+     raw: [ 'HTC htc_legend', 'Opera/9.80' ] },
+  os: { name: 'Android 2.1' },
+  browser: { name: 'Opera', version: '10.00' },
+  engine: 
+   { locale: 'en',
+     name: 'Presto',
+     version: [ '2.4.15', '1010290100' ],
+     security: 'U' } }
+{ hardware: 
+   { name: 'HTC htc_legend',
+     raw: [ 'HTC htc_legend', 'Opera/9.80' ] },
+  os: { name: 'Android 2.1' },
+  browser: { name: 'Opera', version: '10.00' },
+  engine: 
+   { locale: 'en',
+     name: 'Presto',
+     version: [ '2.4.15', '1101100100' ],
+     security: 'U' } }
+
+
+
+{ hardware: 
+   { name: 'HTC htc_bravo',
+     raw: [ 'HTC htc_bravo', 'Opera/9.80' ] },
+  os: { name: 'Android 2.2' },
+  browser: { name: 'Opera', version: '10.00' },
+  engine: 
+   { locale: 'en',
+     name: 'Presto',
+     version: [ '2.4.15', '1101100100' ],
+     security: 'U' } }
+{ hardware: 
+   { name: 'HTC htc_bravo',
+     raw: [ 'HTC htc_bravo', 'Opera/9.80' ] },
+  os: { name: 'Android 2.2' },
+  browser: { name: 'Opera', version: '10.00' },
+  engine: 
+   { locale: 'en',
+     name: 'Presto',
+     version: [ '2.4.15', '1012090815' ],
+     security: 'U' } }
+{ hardware: 
+   { name: 'HTC htc_ace',
+     raw: [ 'HTC htc_ace', 'Opera/9.80' ] },
+  os: { name: 'Android 2.2' },
+  browser: { name: 'Opera', version: '10.00' },
+  engine: 
+   { locale: 'en',
+     name: 'Presto',
+     version: [ '2.4.15', '1101100100' ],
+     security: 'U' } }
+{ hardware: 
+   { name: 'HTC htc_legend',
+     raw: [ 'HTC htc_legend', 'Opera/9.80' ] },
+  os: { name: 'Android 2.1' },
+  browser: { name: 'Opera', version: '10.00' },
+  engine: 
+   { locale: 'en',
+     name: 'Presto',
+     version: [ '2.4.15', '1012220100' ],
+     security: 'U' } }
+{ hardware: 
+   { name: 'HTC vfpioneer',
+     raw: [ 'HTC vfpioneer', 'Opera/9.80' ] },
+  os: { name: 'Android 1.6' },
+  browser: { name: 'Opera', version: '10.00' },
+  engine: 
+   { locale: 'de',
+     name: 'Presto',
+     version: [ '2.4.15', '1010290100' ],
+     security: 'U' } }
+{ hardware: 
+   { name: 'Nokia N97 mini',
+     raw: [ 'Nokia N97 mini', 'Opera/9.80' ] },
+  os: { name: [ 'Symbian OS', 'S60' ] },
+  browser: { name: 'Opera', version: '10.50' },
+  engine: 
+   { locale: 'de',
+     name: 'Presto',
+     version: '2.7.38',
+     security: 'U' } }
+{ hardware: 
+   { name: 'Nokia 5800',
+     raw: [ 'Nokia 5800', 'Opera/9.80' ] },
+  os: { name: [ 'Symbian OS', 'S60' ] },
+  browser: { name: 'Opera', version: '10.50' },
+  engine: 
+   { locale: 'de',
+     name: 'Presto',
+     version: '2.7.38',
+     security: 'U' } }
+{ hardware: 
+   { name: 'NOKIA E5-00',
+     raw: [ 'NOKIA E5-00', 'Opera/9.80' ] },
+  os: { name: [ 'Symbian OS', 'S60' ] },
+  browser: { name: 'Opera', version: '10.50' },
+  engine: 
+   { locale: 'de',
+     name: 'Presto',
+     version: '2.7.38',
+     security: 'U' } }
+{ hardware: {},
+  os: { name: 'Android' },
+  browser: { name: 'Opera', version: '10.1' },
+  engine: 
+   { locale: 'en',
+     name: 'Presto',
+     version: '2.6.35',
+     security: 'U' } }
+undefined
+{ hardware: {},
+  os: { name: [ 'Macintosh', 'Intel Mac OS X 10.6.6' ] },
+  browser: { name: 'Opera', version: '11.00' },
+  engine: 
+   { locale: 'de',
+     name: 'Presto',
+     version: '2.7.62',
+     security: 'U' } }
+{ hardware: {},
+  os: { name: 'Windows NT 5.1' },
+  browser: { name: 'Opera', version: '11.00' },
+  engine: 
+   { locale: 'en',
+     name: 'Presto',
+     version: '2.7.62',
+     security: 'U' } }
+{ hardware: {},
+  os: { name: [ 'Macintosh', 'Intel Mac OS X' ] },
+  browser: { name: 'Opera', version: '9.64' },
+  engine: 
+   { locale: 'de',
+     name: 'Presto',
+     version: '2.1.1',
+     security: 'U' } }
